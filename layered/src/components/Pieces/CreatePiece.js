@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
+import { createProject } from '../../redux/actions/projectActions';
 
 class CreatePiece extends Component {
     state = {
+        id: '',
         title: '',
-        description: '',
-        dateCreated: '',
-        author: '',
-        template: '',
+        content: '',
+
     }
     handleSubmit = (e)  => {
         e.preventDefault();
-        console.log(this.state)
+        this.props.createProject(this.state)
     }
 
     handleChange = (e)  => {
@@ -26,12 +26,16 @@ class CreatePiece extends Component {
             <h1> Create a piece</h1>
             <form className='SignInForm' onSubmit={this.handleSubmit}>
                 <div>
+                    ID
+                    <input id='id' onChange={this.handleChange}/>
+                </div>
+                <div>
                     title
                     <input id='title' onChange={this.handleChange}/>
                 </div>
                 <div>
                     description
-                    <input id='description' onChange={this.handleChange}/>
+                    <input id='content' onChange={this.handleChange}/>
                 </div>
                 <button> create project </button>
             </form>
@@ -40,4 +44,10 @@ class CreatePiece extends Component {
     }
 }
 
-export default CreatePiece;
+const mapDispatchToProps = (dispatch) => {
+    return{
+        createProject: (project) => dispatch(createProject(project))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(CreatePiece);
