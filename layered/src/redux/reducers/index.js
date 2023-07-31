@@ -3,9 +3,13 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
 import CountReducer from './count-reducer';
+import authReducer from './auth-reducer';
+import projectReducer from './project-reducer';
 
 const rootReducer = combineReducers({
   count: CountReducer,
+  project: projectReducer,
+  auth: authReducer,
 });
 
 export default rootReducer;

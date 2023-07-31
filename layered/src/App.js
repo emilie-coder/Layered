@@ -5,13 +5,11 @@ import NavBar from './components/layout/NavBar';
 import Thesis from './components/thesisComponent/Thesis';
 import Browse from './components/browseComponent/Browse';
 import CreatePiece from './components/Pieces/CreatePiece';
-import SignedInLink from './components/layout/SignedInLinks';
-import SignedOutLink from './components/layout/SignedOutLinks';
 import SignInPage from './components/layout/SignInPage';
 import SignUpPage from './components/layout/SignUpPage';
 import { increment, decrement } from './redux/actions';
 import Controls from './components/control';
-import { combineReducers } from 'redux';
+import Dashboard from './components/dashboard/Dashboard';
 
 class App extends Component {
   render() {
@@ -31,6 +29,7 @@ class App extends Component {
               <Route path="/CreatePiece" element={<CreatePiece />} />
               <Route path="/SignIn" element={<SignInPage />} />
               <Route path="/SignUp" element={<SignUpPage />} />
+              <Route path="/Dashboard" element={<Dashboard />} />
             </Routes>
           </div>
         </BrowserRouter>
@@ -38,11 +37,6 @@ class App extends Component {
     );
   }
 }
-
-// Mapping the Redux state to component props
-const mapStateToProps = (state) => ({
-  state: state.counter.value,
-});
 
 // Connecting the component to the Redux store and mapDispatchToProps
 export default connect(null, { increment, decrement })(App);
