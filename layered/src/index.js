@@ -7,23 +7,19 @@ import { Provider } from 'react-redux';
 import { configureStore, compose } from '@reduxjs/toolkit';
 import rootReducer from './redux/reducers';
 import thunk from 'redux-thunk';
-import { reduxFirestore, getFirestore } from 'firebase/firestore';
-import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
-import firebaseConfig from './config/fbConfig';
 
 // this creates the store with the reducers
 const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
-  getDefaultMiddleware().concat(thunk.withExtraArgument({getFirestore, getFirebase})),
-  enhancers: [reduxFirestore(firebaseConfig), reactReduxFirebase(firebaseConfig)],
+  getDefaultMiddleware().concat(thunk.withExtraArgument()),
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+        <App />
     </Provider>
 
   </React.StrictMode>
